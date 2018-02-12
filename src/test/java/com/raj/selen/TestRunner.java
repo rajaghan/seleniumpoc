@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public class TestRunner {
 
 	public static WebDriver driver;
+	public static String TEST_URL;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,6 +29,7 @@ public class TestRunner {
 		} else if (properties != null) {
 			GECKO_DRIVER_PATH = properties.getProperty("gecko.driver.linux.path");
 		}
+		TEST_URL=properties.getProperty("test.url");
 		System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_PATH);
 		FirefoxProfile ffProfile = new FirefoxProfile();
 		FirefoxOptions ffOptions = new FirefoxOptions();
@@ -38,9 +40,9 @@ public class TestRunner {
 
 	@Test
 	public void test() {
-		String URL = "http://www.google.com";
+		String URL = TEST_URL;
 		driver.get(URL);
-//		System.out.println(driver.getPageSource());
+		System.out.println(driver.getPageSource());
 	}
 
 }
