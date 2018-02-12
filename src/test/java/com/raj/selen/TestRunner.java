@@ -40,7 +40,7 @@ public class TestRunner {
 	public void test() {
 		String URL = "http://www.google.com";
 		driver.get(URL);
-		System.out.println(driver.getPageSource());
+//		System.out.println(driver.getPageSource());
 	}
 
 }
