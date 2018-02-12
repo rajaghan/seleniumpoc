@@ -1,5 +1,9 @@
 package com.raj.selen;
 
+import java.io.InputStream;
+import java.util.Properties;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,31 +12,33 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 public class TestRunner {
 
-	/*static WebDriver driver;
+	public static WebDriver driver;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		System.setProperty("webdriver.gecko.driver",
-				"C:\\Users\\IBM_ADMIN\\eclipse-oxygen-workspace\\selen\\drivers\\win64\\geckodriver.exe");
-		FirefoxProfile ffProfile=new FirefoxProfile();
-		FirefoxOptions ffOptions=new FirefoxOptions();
+		Properties properties = new Properties();
+		InputStream in = TestRunner.class.getResourceAsStream("/test.properties");
+		if (in != null) {
+			properties.load(in);
+			in.close();
+		}
+		String GECKO_DRIVER_PATH = "";
+		if (properties != null && "true".equalsIgnoreCase(properties.getProperty("windows"))) {
+			GECKO_DRIVER_PATH = properties.getProperty("gecko.driver.win.path");
+		} else if (properties != null) {
+			GECKO_DRIVER_PATH = properties.getProperty("gecko.driver.linux.path");
+		}
+		System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_PATH);
+		FirefoxProfile ffProfile = new FirefoxProfile();
+		FirefoxOptions ffOptions = new FirefoxOptions();
 		ffOptions.setHeadless(true);
 		ffOptions.setProfile(ffProfile);
 		driver = new FirefoxDriver(ffOptions);
 	}
-*/
+
 	@Test
 	public void test() {
-		WebDriver driver;
-		String URL = "http://www.gmail.com";
-		System.setProperty("webdriver.gecko.driver",
-				"C:\\Users\\IBM_ADMIN\\eclipse-oxygen-workspace\\selen\\drivers\\win64\\v015\\geckodriver.exe");
-		FirefoxProfile ffProfile=new FirefoxProfile();
-		FirefoxOptions ffOptions=new FirefoxOptions();
-		ffOptions.setHeadless(true);
-		ffOptions.setProfile(ffProfile);
-		driver = new FirefoxDriver(ffOptions);
-
+		String URL = "http://www.google.com";
 		driver.get(URL);
 	}
 
