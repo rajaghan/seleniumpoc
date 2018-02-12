@@ -34,6 +34,7 @@ public class TestRunner {
 		FirefoxProfile ffProfile = new FirefoxProfile();
 		FirefoxOptions ffOptions = new FirefoxOptions();
 		ffOptions.setHeadless(true);
+		ffOptions.setCapability("marionette", false);
 		ffOptions.setProfile(ffProfile);
 		driver = new FirefoxDriver(ffOptions);
 	}
